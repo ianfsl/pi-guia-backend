@@ -8,8 +8,10 @@ router.get("/ponto/:pontoId", (req, res) => {
   const { pontoId } = req.params;
 
   const query = `
-    SELECT c.*, u.nome as usuario_nome 
-    FROM comentarios c
+    SELECT 
+      c.*,
+      u."Nome do usuario" as usuario_nome
+    FROM Comentarios c
     JOIN Usuario u ON c.usuario_id = u.idUsuario
     WHERE c.ponto_turistico_id = ?
     ORDER BY c.data_criacao DESC
@@ -36,8 +38,8 @@ router.post("/", autenticarToken, (req, res) => {
   }
 
   const query = `
-    INSERT INTO comentarios (texto, usuario_id, ponto_turistico_id, data_criacao)
-    VALUES (?, ?, ?, datetime('now'))
+    INSERT INTO Comentarios (texto, usuario_id, ponto_turistico_id)
+    VALUES (?, ?, ?)
   `;
 
   db.run(query, [texto, usuario_id, ponto_turistico_id], function (err) {
