@@ -22,7 +22,7 @@ const corsOptions = {
       "http://localhost:5173",
       "https://localhost:5173",
       "http://127.0.0.1:5173",
-      "https://seusite.netlify.app",
+      "https://pi-guia-turistico-backend.onrender.com",
       process.env.FRONTEND_URL,
     ];
 
