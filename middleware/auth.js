@@ -10,18 +10,14 @@ export const autenticarToken = (req, res, next) => {
     });
   }
 
-  jwt.verify(
-    token,
-    process.env.JWT_SECRET || "seuSegredoSuperSecreto",
-    (err, usuario) => {
-      if (err) {
-        return res.status(403).json({
-          error: "Token inválido",
-        });
-      }
-
-      req.usuario = usuario;
-      next();
+  jwt.verify(token, process.env.JWT_SECRET, (err, usuario) => {
+    if (err) {
+      return res.status(403).json({
+        error: "Token inválido",
+      });
     }
-  );
+
+    req.usuario = usuario;
+    next();
+  });
 };
