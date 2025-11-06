@@ -11,6 +11,7 @@ router.get("/", (req, res) => {
       p."Horário de Funcionamento" as horario,
       p."Endereço" as endereco,
       p."Breve Descrição" as descricao,
+      p."Imagem" as imagem,
       c."Nome da Cidade" as cidade
     FROM "Pontos Turisticos" p
     JOIN "Cidade" c ON p."Cidade" = c.idCidade
@@ -36,6 +37,7 @@ router.get("/", (req, res) => {
         descricao: row.descricao || "Descrição não disponível",
         horario: row.horario,
         endereco: row.endereco,
+        imagem: row.imagem,
       }));
 
       res.json(pontosFormatados);
@@ -53,6 +55,7 @@ router.get("/cidade/:cidadeNome", (req, res) => {
       p."Horário de Funcionamento" as horario,
       p."Endereço" as endereco,
       p."Breve Descrição" as descricao,
+      p."Imagem" as imagem,
       c."Nome da Cidade" as cidade
     FROM "Pontos Turisticos" p
     JOIN "Cidade" c ON p."Cidade" = c.idCidade
@@ -73,6 +76,7 @@ router.get("/cidade/:cidadeNome", (req, res) => {
         descricao: row.descricao || "Descrição não disponível",
         horario: row.horario,
         endereco: row.endereco,
+        imagem: row.imagem,
       }));
 
       res.json(pontosFormatados);
