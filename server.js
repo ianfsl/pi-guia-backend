@@ -23,6 +23,7 @@ const corsOptions = {
       "https://localhost:5173",
       "https://127.0.0.1:5173",
       "https://pi-guia-turistico-backend.onrender.com",
+      "https://joiasdeitaqueri.netlify.app",
       "https://joiasdeitaqueri.netlify.app/",
       process.env.FRONTEND_URL,
     ];
