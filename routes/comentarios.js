@@ -37,22 +37,28 @@ router.post("/", autenticarToken, (req, res) => {
       .json({ error: "Texto e ponto turístico são obrigatórios" });
   }
 
+  const data_criacao = new Date().toISOString();
+
   const query = `
-    INSERT INTO Comentarios (texto, usuario_id, ponto_turistico_id)
-    VALUES (?, ?, ?)
+    INSERT INTO Comentarios (texto, usuario_id, ponto_turistico_id, data_criacao)
+    VALUES (?, ?, ?, ?)
   `;
 
-  db.run(query, [texto, usuario_id, ponto_turistico_id], function (err) {
-    if (err) {
-      console.error("Erro ao adicionar comentário:", err);
-      res.status(500).json({ error: "Erro interno do servidor" });
-    } else {
-      res.status(201).json({
-        message: "Comentário adicionado com sucesso",
-        comentarioId: this.lastID,
-      });
+  db.run(
+    query,
+    [texto, usuario_id, ponto_turistico_id, data_criacao],
+    function (err) {
+      if (err) {
+        console.error("Erro ao adicionar comentário:", err);
+        res.status(500).json({ error: "Erro interno do servidor" });
+      } else {
+        res.status(201).json({
+          message: "Comentário adicionado com sucesso",
+          comentarioId: this.lastID,
+        });
+      }
     }
-  });
+  );
 });
 
 export default router;
